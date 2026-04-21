@@ -1,3 +1,5 @@
+# Mr Robot CTF
+
 Let's make nmap scan
 
 <img width="529" height="444" alt="Screenshot From 2026-01-01 18-58-11" src="https://github.com/user-attachments/assets/83040969-512b-46dd-b823-8687be534d23" />
@@ -74,4 +76,56 @@ nmap> !sh
 ```
 
 <img width="1488" height="137" alt="Screenshot From 2026-01-01 19-46-44" src="https://github.com/user-attachments/assets/d719eb30-0a54-430e-9182-26ae8680bdf3" />
+
+
+## MITRE ATT&CK TTPs
+
+### Reconnaissance
+T1595.001 - Active Scanning: Scanning IP Blocks
+Nmap scan to discover open ports and services.
+
+T1592.002 - Gather Victim Host Information: Software
+Identifying WordPress CMS via gobuster and directory enumeration.
+
+### Discovery
+T1083 - File and Directory Discovery
+Checking robots.txt to discover hidden files (key, dictionary).
+
+T1518.001 - Software Discovery: Security Software Discovery
+Identifying WordPress version and login panel via gobuster.
+
+### Credential Access
+T1110.001 - Brute Force: Password Guessing
+Guessing the username "elliot" based on context (Mr. Robot characters).
+
+T1110.003 - Brute Force: Password Spraying
+Using WPScan with fsocity.dic wordlist to brute-force the WordPress password.
+
+T1110.002 - Brute Force: Password Cracking
+Cracking the MD5 hash of robot user's password via CrackStation.
+
+### Initial Access
+T1078 - Valid Accounts
+Logging into WordPress admin panel with discovered credentials (elliot).
+
+### Execution
+T1059.004 - Command and Scripting Interpreter: Unix Shell
+PHP reverse shell injected into 404.php to gain remote code execution.
+
+### Persistence
+T1505.003 - Server Software Component: Web Shell
+Injecting PHP reverse shell into WordPress theme file (404.php).
+
+### Command & Control
+T1071.001 - Application Layer Protocol: Web Protocols
+Triggering the reverse shell over HTTP by navigating to a non-existent page.
+
+### Privilege Escalation
+T1548.001 - Abuse Elevation Control Mechanism: Setuid and Setgid
+Discovering SUID binaries via: find / -perm -4000 -type f 2>/dev/null
+Using nmap --interactive and !sh to spawn a root shell (GTFOBins).
+
+### Lateral Movement
+T1078 - Valid Accounts
+Switching to the robot user using the cracked password via su robot.
 
