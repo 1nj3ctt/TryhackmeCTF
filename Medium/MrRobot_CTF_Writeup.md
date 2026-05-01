@@ -25,9 +25,6 @@
 
 Begin with a port scan to identify open services on the target:
 
-```bash
-nmap -sV -sC -oN nmap_scan.txt <MACHINE-IP>
-```
 
 ![Nmap scan results - open ports](https://github.com/user-attachments/assets/83040969-512b-46dd-b823-8687be534d23)
 ![Nmap service version details](https://github.com/user-attachments/assets/68530bfb-e0ad-41f0-a5e7-9b0278bc0143)
